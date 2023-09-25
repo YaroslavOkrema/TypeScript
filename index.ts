@@ -60,3 +60,115 @@ let sum: ISumFunc;
 sum = (a: number, b: number) => a + b; //okay 
 
 //sum = (a: string, b: number) => a + b; //error
+
+//Union types
+let strOrNum: string | number;
+strOrNum = 'lalala'; //ok
+strOrNum = 300; //ok
+//strOrNum = false; //error
+
+const transformFunk = (value: number | string) => {
+    if (typeof value === 'string') {
+        return `String is ${value}`;
+    } else if (typeof value === 'number') {
+        return value * 2;
+    }
+};
+
+console.log(transformFunk('Hi'));
+console.log(transformFunk(3));
+
+
+//Type Alias
+type NumberOrBoolean = number | boolean;
+let myValue: NumberOrBoolean;
+myValue = 300; //ok
+myValue = false; //ok
+//myValue = 'lalala'; error
+
+//Пересечение типов 
+type A = {
+    propA: string;
+};
+
+type B = {
+    propB: number;
+};
+
+type C = A & B;
+const myObj: C = {
+    propA: 'lalala',
+    propB: 42
+};
+
+//Литеральные типы 
+const checkDeviceState = (signal: 1 | 0) => {
+    if (signal === 1) return 'Device enabled!';
+
+    return 'Device disabled!';
+};
+checkDeviceState(1); //ok
+//checkDeviceState(2); //error
+
+//ENUMS
+enum DeviceStates {
+    enabled, //1
+    disabled, //2
+    broken //3
+}
+
+console.log(DeviceStates.enabled);
+console.log(DeviceStates.disabled);
+console.log(DeviceStates.broken);
+
+enum FileAccess {
+    //constant members
+    None,
+    Read = 1 << 1,
+    Write = 1 << 2,
+    ReadWrite = Read | Write,
+    // computer member 
+    G = "123".length,
+}
+
+//Interfaces 
+interface IUser {
+    login: string;
+    password: string;
+}
+
+interface IAdminRights {
+    editAricles: boolean;
+    deleteArticles: boolean;
+    banUsers: boolean;
+}
+
+interface IAdmin extends IUser {
+    permissins: IAdminRights
+}
+
+const admin: IAdmin = {
+    login: 'LOGIN',
+    password: '12345',
+    permissins: {
+        editAricles: true,
+        deleteArticles: true,
+        banUsers: false
+    }
+}
+
+// Наследование интерфейсов
+interface IAged {
+    age: number;
+}
+
+interface INamed {
+    name: string;
+}
+
+interface Iperson extends IAged, INamed { }
+
+const person: Iperson = {
+    name: 'Ivan',
+    age: 20
+};
