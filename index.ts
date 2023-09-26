@@ -172,3 +172,64 @@ const person: Iperson = {
     name: 'Ivan',
     age: 20
 };
+
+//Classes
+class Person {
+    name: string;
+    age: number;
+}
+
+const person2 = new Person(); //ok
+person2.name = 'Ivan';
+person2.age = 19;
+//const person3 = new Person('Roma', 12); //error
+
+//-------------------------------------------------------------
+
+//interface w/ class
+interface IPerson {
+    name: string;
+    age: number;
+
+    sayHi: () => void
+}
+
+// Class w/ constructor 
+class Person3 implements IPerson {
+    name: string;
+    secret: string;
+    age: number;
+
+    constructor(name = 'Anonymus', age = 12) {
+        this.name = name;
+        this.age = age;
+    }
+
+    //Add Method
+    sayHi(): void {
+        console.log(`Hi! My name is ${this.name}`);
+    }
+}
+
+const person3 = new Person(); // {name: 'Anonimus', age: null}
+//const person4 = new Person('Roma', 11); // {name: 'Roma', age: 11}
+
+//ABSTRACT CLASSES
+abstract class AbstractGreeter {
+    abstract sayHi(): void;
+}
+
+//ok
+class MyGreeter extends AbstractGreeter {
+    sayHi(): void {
+        console.log('Hi!');
+    }
+}
+
+//not ok
+/*
+class MyGreeter2 extends AbstractGreeter {
+    sayHi(msg): void {
+        console.log('Hi!' + msg);
+    }
+}*/
