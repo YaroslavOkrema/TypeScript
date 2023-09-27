@@ -293,3 +293,28 @@ const myRectangle: Rectangle = {
 };
 
 const getValueFromRectProp = (prop: keyof Rectangle, rect: Rectangle) => rect[prop];
+
+//typeof operator
+function abc () {
+    return {
+        x: 10,
+        y: 'lalalala'
+    }
+}
+
+const abc2: typeof abc = () => {
+    return {
+        x: 1234,
+        y: 'fsdffs'
+    };
+}
+
+interface Animal {
+    live(): void;
+}
+
+interface Dog extends Animal {
+    woof(): void;
+}
+
+type Type1 = Dog extends Animal ? number : string;
