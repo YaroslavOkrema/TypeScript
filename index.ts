@@ -233,3 +233,50 @@ class MyGreeter2 extends AbstractGreeter {
         console.log('Hi!' + msg);
     }
 }*/
+
+//--------------------------------------------------
+//Generics
+function identity <T> (value: T): T {
+    return value;
+}
+
+function stringIdentity (value: string) {
+    return value;
+}
+
+function numericIdentity (value: number) {
+    return value;
+}
+
+//Generics Interface
+interface MyStorage<T> {
+    values: T[];
+    getValues: () => T[];
+}
+
+const numericStorage: MyStorage<number> = {
+    values: [],
+    getValues() {
+        return this.values;
+    }
+}
+
+const booleanStorage: MyStorage<boolean> = {
+    values: [],
+    getValues() {
+        return this.values;
+    }
+}
+
+//Generic class
+class IdentityClass<T> {
+    value: T;
+
+    constructor(value: T) {
+        this.value = value;
+    }
+
+    getIdentity(): T {
+        return this.value;
+    }
+}
