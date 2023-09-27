@@ -280,3 +280,16 @@ class IdentityClass<T> {
         return this.value;
     }
 }
+
+// key of operator
+type Rectangle = {
+    width: number;
+    height: number;
+};
+
+const myRectangle: Rectangle = {
+    width: 10,
+    height: 20
+};
+
+const getValueFromRectProp = (prop: keyof Rectangle, rect: Rectangle) => rect[prop];
