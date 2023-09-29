@@ -341,3 +341,96 @@ const directionUsed: DirectionObj = {
     right: true,
     up: true
 };
+
+//Utility types
+//Partial type
+
+interface IRectangle {
+    width: number;
+    height: number;
+}
+
+interface IRectangle2 {
+    width?: number;
+    height?: number;
+}
+
+const partOfRectangle: Partial<Rectangle> = {};
+
+//Required type
+interface IPoint {
+    a?: number;
+    b?: number;
+}
+
+const fullPoint: Required<IPoint> = {
+    a: 1,
+    b: 2
+};
+
+//Readonly type
+interface IPoint {
+    a?: number;
+    b?: number;
+} 
+
+const forzenPoint: Readonly<IPoint> = {
+    a: 1,
+    b: 2
+}
+
+//Record type
+interface IPointData {
+    a?: number;
+    b?: number;
+} 
+
+type PointNames = 'firstPoint' | 'secondPoint'
+
+const point: Record<PointNames, IPointData> = {
+    firstPoint: {
+        a: 1,
+        b: 1
+    },
+
+    secondPoint: {
+        a: 2,
+        b: 2
+    }
+}
+
+//Pick type
+interface Todo {
+    title: string;
+    description: string;
+    completed: boolean;
+}
+
+type TodoPreview = Pick<Todo, 'title' | 'completed'>;
+
+const todo: TodoPreview = {
+    title: 'Clean room',
+    completed: false,
+}
+
+//Omit type
+interface IPoint {
+    d: number;
+    f: number,
+    willBeRemoved: string;
+}
+
+type Piont = Omit<IPoint, 'willBeRemoved'>;
+
+//Exclude type 
+type Directions = 'Up' | 'Right' | 'Down' | 'Left';
+
+type DirectionsWithoutLateral = Exclude<Directions, 'Right' | 'Left'>;
+
+const direction: DirectionsWithoutLateral = 'Up';
+
+//String manipulatuon types
+//Uppercase
+//Lowercase
+//Capitalized 
+//Uncapitalize 
