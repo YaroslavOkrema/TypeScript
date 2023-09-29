@@ -318,3 +318,26 @@ interface Dog extends Animal {
 }
 
 type Type1 = Dog extends Animal ? number : string;
+
+//mapped type
+type StrNum = {
+    [key: string]: string | number;
+};
+
+const obj: StrNum = {
+    lalala: 'sadasdasd',
+    test: 12312
+}
+
+type Direction = 'up' | 'down' | 'left' | 'right';
+
+type DirectionObj = {
+    [key in Direction]: boolean;
+};
+
+const directionUsed: DirectionObj = {
+    left: true,
+    down: false,
+    right: true,
+    up: true
+};
